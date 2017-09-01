@@ -1,0 +1,3 @@
+---- IOCON_PIO_1_3 Matches (2 in 2 files) ----
+Lpc12xx_iocon.h (source):#define IOCON_PIO_1_3     ((uint16_t)0x0C80 )
+Uart.c (source):	PIO_mode.type = IOCON_PIO_1_3;

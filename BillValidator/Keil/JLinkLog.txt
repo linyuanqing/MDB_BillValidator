@@ -1,0 +1,27 @@
+
+T26DC 000:392 SEGGER J-Link V4.80g Log File (0002ms, 0283ms total)
+T26DC 000:392 DLL Compiled: Feb 13 2014 20:50:02 (0002ms, 0283ms total)
+T26DC 000:392 Logging started @ 2017-09-01 11:18 (0002ms, 0283ms total)
+T26DC 000:394 JLINK_SetWarnOutHandler(...) (0000ms, 0283ms total)
+T26DC 000:394 JLINK_OpenEx(...)
+Firmware: J-Link V9 compiled Dec 16 2016 15:34:10
+Hardware: V9.40
+S/N: 36410082
+Feature(s): RDI, GDB, FlashDL, FlashBP, JFlash  returns O.K. (0273ms, 0556ms total)
+T26DC 000:667 JLINK_SetErrorOutHandler(...) (0000ms, 0556ms total)
+T26DC 000:667 JLINK_ExecCommand("ProjectFile = "H:\桌面2016518\2017相关程序\coffee\文档\MDBmPayV3\Keil\JLinkSettings.ini"", ...)  returns 0x00 (0000ms, 0556ms total)
+T26DC 000:669 JLINK_ExecCommand("Device = LPC1225/321", ...)Device "LPC1225/321" selected (80 KB flash, 8 KB RAM).  returns 0x00 (0003ms, 0559ms total)
+T26DC 000:672 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x01 (0000ms, 0559ms total)
+T26DC 000:672 JLINK_GetHardwareVersion()  returns 0x16F30 (0000ms, 0559ms total)
+T26DC 000:672 JLINK_GetDLLVersion()  returns 48007 (0000ms, 0559ms total)
+T26DC 000:672 JLINK_GetFirmwareString(...) (0000ms, 0559ms total)
+T26DC 000:689 JLINK_GetDLLVersion()  returns 48007 (0000ms, 0559ms total)
+T26DC 000:689 JLINK_GetCompileDateTime() (0000ms, 0559ms total)
+T26DC 000:693 JLINK_GetFirmwareString(...) (0000ms, 0559ms total)
+T26DC 000:699 JLINK_GetHardwareVersion()  returns 0x16F30 (0000ms, 0559ms total)
+T26DC 000:711 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0004ms, 0563ms total)
+T26DC 000:715 JLINK_SetSpeed(1000) (0002ms, 0565ms total)
+T26DC 000:717 JLINK_GetId() >0x108 TIF> >0x108 TIF>  returns 0x00000000 (0209ms, 0774ms total)
+T26DC 002:681 JLINK_Close() (0002ms, 0776ms total)
+T26DC 002:681  (0002ms, 0776ms total)
+T26DC 002:681 Closed (0002ms, 0776ms total)

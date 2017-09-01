@@ -1,0 +1,21 @@
+--cpu Cortex-M0
+".\obj\startup_lpc12xx.o"
+".\obj\main.o"
+".\obj\ledtask.o"
+".\obj\mdbslavetask.o"
+".\obj\comhosttask.o"
+".\obj\rtx_conf_cm.o"
+".\obj\time.o"
+".\obj\uart.o"
+".\obj\lpc12xx_gpio.o"
+".\obj\lpc12xx_iocon.o"
+".\obj\lpc12xx_libcfg_default.o"
+".\obj\lpc12xx_sysctrl.o"
+".\obj\lpc12xx_timer32.o"
+".\obj\lpc12xx_uart.o"
+".\obj\system_lpc12xx.o"
+d:\Keil\ARM\RV31\LIB\RTX_CM1.LIB
+--library_type=microlib --strict --scatter ".\obj\MDBmPayV3.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\lst\MDBmPayV3.map" -o .\obj\MDBmPayV3.axf

@@ -1,0 +1,112 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+H:\桌面2016518\2017相关程序\coffee\文档\BillValidator\Keil\MDBmPayV3.uvproj
+Project File Date:  09/01/2017
+
+<h2>Output:</h2>
+Build target 'MDBmPay'
+compiling Main.c...
+compiling ComHostTask.c...
+linking...
+Program Size: Code=12040 RO-data=268 RW-data=124 ZI-data=4356  
+FromELF: creating hex file...
+".\obj\MDBmPayV3.axf" - 0 Error(s), 0 Warning(s).
+</pre>
+</body>
+</html>
+l_Flag_Vend_Request)|| Check_ISP_Key_Pressed()) // isp key pressed to debit
+..\Source\ComHostTask.c: 1 warning, 0 errors
+linking...
+Program Size: Code=12040 RO-data=268 RW-data=124 ZI-data=4356  
+FromELF: creating hex file...
+".\obj\MDBmPayV3.axf" - 0 Error(s), 1 Warning(s).
+f" - 1 Error(s), 1 Warning(s).
+Target not created
+e(LPC_GPIO0, 12) == 0))    // card inserted
+..\Source\MdbSlaveTask.c(118): error:  #20: identifier "p_BeginSession" is undefined
+                                                p_BeginSession.Funds    = u32_Funds;
+..\Source\MdbSlaveTask.c(118): error:  #20: identifier "u32_Funds" is undefined
+                                                p_BeginSession.Funds    = u32_Funds;
+..\Source\MdbSlaveTask.c(135): error:  #20: identifier "p_VendApproved" is undefined
+                                        p_VendApproved.Code     = p8_Vend_Approved[0];  
+..\Source\MdbSlaveTask.c(140): error:  #20: identifier "t16_ItemPrice" is undefined
+                                        p_VendApproved.Amount   = t16_ItemPrice.Bytes.Low * 0x100 + t16_ItemPrice.Bytes.High;
+..\Source\MdbSlaveTask.c(144): error:  #20: identifier "bl_Flag_MPAY_Done" is undefined
+                                        if (bl_Flag_MPAY_Done == TRUE)
+..\Source\MdbSlaveTask.c(179): error:  #20: identifier "bl_CardAction" is undefined
+                                        if ((u8_ComHost_State != COMHOST_ENABLE)&&!bl_CardAction)//added to exit pay after vend by DJI @20160316
+..\Source\MdbSlaveTask.c(222): error:  #20: identifier "t16_ItemPrice" is undefined
+                                        t16_ItemPrice.Word = Uart0RxBuff.Data[2] * 0x100 + Uart0RxBuff.Data[3];
+..\Source\MdbSlaveTask.c(223): error:  #20: identifier "t16_ItemNuber" is undefined
+                                        t16_ItemNuber.Word = Uart0RxBuff.Data[4] * 0x100 + Uart0RxBuff.Data[5];
+..\Source\MdbSlaveTask.c(226): error:  #20: identifier "bl_Flag_Vend_Request" is undefined
+                                        bl_Flag_Vend_Request = TRUE;    // Flag to debit on card
+..\Source\MdbSlaveTask.c(260): error:  #20: identifier "bl_CardAction" is undefined
+                                        if (bl_CardAction)//added to exit pay by escrow by DJI @20160316
+..\Source\MdbSlaveTask.c(316): error:  #20: identifier "p_MyPeripheral" is undefined
+                                        MdbSlave_Responses(&p_MyPeripheral, sizeof(p_MyPeripheral));
+..\Source\MdbSlaveTask.c(329): error:  #20: identifier "p_MyPeripheral" is undefined
+                                        MdbSlave_Responses(&p_MyPeripheral, sizeof(p_MyPeripheral));
+..\Source\MdbSlaveTask.c: 0 warnings, 14 errors
+".\obj\MDBmPayV3.axf" - 14 Error(s), 1 Warning(s).
+Target not created
+figInts(LPC_UART0, UART_INTCFG_RBR, ENABLE);    
+..\Source\MdbSlaveTask.c(348): error:  #20: identifier "UART_INTCFG_RBR" is undefined
+                UART_ConfigInts(LPC_UART0, UART_INTCFG_RBR, ENABLE);    
+..\Source\MdbSlaveTask.c(350): error:  #20: identifier "UART_INTCFG_RLS" is undefined
+                UART_ConfigInts(LPC_UART0, UART_INTCFG_RLS, ENABLE);            
+..\Source\MdbSlaveTask.c: 1 warning, 16 errors
+".\obj\MDBmPayV3.axf" - 16 Error(s), 2 Warning(s).
+Target not created
+veTask.c(97): warning:  #223-D: function "MdbSlave_Responses" declared implicitly
+                                        MdbSlave_Responses((void*)p8_Ack, 1);           // 0x100 0x000
+..\Source\MdbSlaveTask.c(99): error:  #20: identifier "WS_ENABLED" is undefined
+                                else if (u8_MdbSlave_State == WS_ENABLED) // patron card swiped
+..\Source\MdbSlaveTask.c(101): error:  #20: identifier "bl_CardAction" is undefined
+                                        if ((bl_CardAction))    // ||(GPIO_GetPinValue(LPC_GPIO0, 12) == 0))    // card inserted
+..\Source\MdbSlaveTask.c(103): error:  #20: identifier "FALSE" is undefined
+                                                bl_CardAction                   = FALSE;
+..\Source\MdbSlaveTask.c(104): error:  #20: identifier "WS_SESSIONIDLE" is undefined
+                                                u8_MdbSlave_State               = WS_SESSIONIDLE;
+..\Source\MdbSlaveTask.c(116): error:  #20: identifier "p_BeginSession" is undefined
+                                                p_BeginSession.Funds    = u32_Funds;
+..\Source\MdbSlaveTask.c(116): error:  #20: identifier "u32_Funds" is undefined
+                                                p_BeginSession.Funds    = u32_Funds;
+..\Source\MdbSlaveTask.c(119): warning:  #223-D: function "MdbSlave_Responses" declared implicitly
+                                                MdbSlave_Responses((void *)&p_BeginSession, sizeof(p_BeginSession));
+..\Source\MdbSlaveTask.c(127): error:  #20: identifier "WS_VEND_BEGIN" is undefined
+                                else if ((u8_MdbSlave_State == WS_VEND_BEGIN)||(u8_MdbSlave_State == WS_SESSIONIDLE)) // vend begin 
+..\Source\MdbSlaveTask.c(127): error:  #20: identifier "WS_SESSIONIDLE" is undefined
+                                else if ((u8_MdbSlave_State == WS_VEND_BEGIN)||(u8_MdbSlave_State == WS_SESSIONIDLE)) // vend begin 
+..\Source\MdbSlaveTask.c(131): error:  #20: identifier "WS_VEND_APPROVED" is undefined
+                                else if (u8_MdbSlave_State == WS_VEND_APPROVED) // vend approved 
+..\Source\MdbSlaveTask.c(133): error:  #20: identifier "p_VendApproved" is undefined
+                                        p_VendApproved.Code     = p8_Vend_Approved[0];  
+..\Source\MdbSlaveTask.c(138): error:  #20: identifier "t16_ItemPrice" is undefined
+                                        p_VendApproved.Amount   = t16_ItemPrice.Bytes.Low * 0x100 + t16_ItemPrice.Bytes.High;
+..\Source\MdbSlaveTask.c(142): error:  #20: identifier "bl_Flag_MPAY_Done" is undefined
+                                        if (bl_Flag_MPAY_Done == TRUE)
+..\Source\MdbSlaveTask.c(144): error:  #20: identifier "FALSE" is undefined
+                                                bl_Flag_MPAY_Done = FALSE;
+..\Source\MdbSlaveTask.c(145): warning:  #223-D: function "MdbSlave_Responses" declared implicitly
+                                                MdbSlave_Responses((void *)&p_VendApproved, sizeof(p_VendApproved));                                            
+..\Source\MdbSlaveTask.c(152): error:  #20: identifier "WS_VEND_SUCCESS" is undefined
+                                else if (u8_MdbSlave_State == WS_VEND_SUCCESS) // vend success 
+..\Source\MdbSlaveTask.c(157): error:  #20: identifier "WS_VEND_DENIED" is undefined
+                                else if (u8_MdbSlave_State == WS_VEND_DENIED) // vend denied or error 
+..\Source\MdbSlaveTask.c(159): warning:  #223-D: function "MdbSlave_Responses" declared implicitly
+                                        MdbSlave_Responses((void *)p8_Vend_Denied, 1);
+..\Source\MdbSlaveTask.c(163): error:  #20: identifier "WS_VEND_FAILURE" is undefined
+                                else if (u8_MdbSlave_State == WS_VEND_FAILURE) // vend failure
+..\Source\MdbSlaveTask.c: 10 warnings, 30 errors
+".\obj\MDBmPayV3.axf" - 30 Error(s), 11 Warning(s).
+Target not created
+        else if (u8_MdbSlave_State == WS_VEND_FAILURE) // vend failure
+..\Source\MdbSlaveTask.c: 11 warnings, 30 errors
+".\obj\MDBmPayV3.axf" - 30 Error(s), 13 Warning(s).
+Target not created
+1 Error(s), 12 Warning(s).
+Target not created
