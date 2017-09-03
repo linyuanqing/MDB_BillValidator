@@ -1,12 +1,12 @@
 .\obj\lpc12xx_iocon.o: ..\Source\lpc12xx_iocon.c
 .\obj\lpc12xx_iocon.o: ..\Source\lpc12xx_libcfg_default.h
 .\obj\lpc12xx_iocon.o: ..\Source\lpc_types.h
-.\obj\lpc12xx_iocon.o: d:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\obj\lpc12xx_iocon.o: c:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\obj\lpc12xx_iocon.o: ..\Source\lpc12xx_iocon.h
 .\obj\lpc12xx_iocon.o: ..\Source\lpc12xx.h
-.\obj\lpc12xx_iocon.o: d:\Keil\ARM\CMSIS\Include\core_cm0.h
-.\obj\lpc12xx_iocon.o: d:\Keil\ARM\CMSIS\Include\core_cmInstr.h
-.\obj\lpc12xx_iocon.o: d:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\obj\lpc12xx_iocon.o: c:\Keil\ARM\CMSIS\Include\core_cm0.h
+.\obj\lpc12xx_iocon.o: c:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\obj\lpc12xx_iocon.o: c:\Keil\ARM\CMSIS\Include\core_cmFunc.h
 .\obj\lpc12xx_iocon.o: ..\Source\system_LPC12xx.h
 .\obj\lpc12xx_iocon.o: ..\Source\lpc12xx_gpio.h
 .\obj\lpc12xx_iocon.o: ..\Source\lpc12xx_uart.h

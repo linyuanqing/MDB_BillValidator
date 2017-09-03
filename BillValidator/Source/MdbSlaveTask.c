@@ -1,6 +1,7 @@
 #include "MdbSlaveTask.h"
 #include "Uart.h"
 #include "Main.h"
+#include "BillValidator.h"
 /*-------------------------------------------------------------------------
 	MDB slave service functions comments	
 -------------------------------------------------------------------------*/
@@ -17,17 +18,19 @@ const U8 p8_Mulfunction_mPay[2]	= {0x0A, 0x10};//No 3G network
 //const U8 p8_RevalueDenied[1]	= {0x0E};
 __task void tsk_MdbSlave(void)
 {	
-	U8 u8_MdbCmd;
-	U8 u8_MdbSub;
-	U8 u8_CmdHead;
+	U8 mdbCmd;
+	U8 mdbSubCmd;
+	//U8 u8_CmdHead;
 
 	//Uart_Init_MdbSlave();	// Uart0
 	
 	//Timer_Init_MdbSlave();
 	
-	Cashless_SetupConfig_Init();
-	Cashless_RequestId_Init();
-	Cashless_BeginSession_Init();
+	//Cashless_SetupConfig_Init();
+	//Cashless_RequestId_Init();
+	//Cashless_BeginSession_Init();
+	
+	BillValidator_Init();
 
 	//p_VendApproved.Code = p8_Vend_Approved[0];	
 	os_sem_init(&sem_MdbSlave_Rx, 0);
@@ -43,53 +46,67 @@ __task void tsk_MdbSlave(void)
 		if (MdbSlave_CheckFcc() == TRUE)
 		{		
 			u8_Uart0_State = UART_WAIT;
-			u8_MdbCmd = Uart0RxBuff.Data[0];
-			
-			if (u8_MdbCmd == 0x18) //skip cmd for CGW 
-			{
-				u8_MdbCmd = 0x8F;//Skip the cmd from MDB CGW
-			}
-			
-			if (!u8_MdbAddr_Mode)//MDB  cashless address #2 and cmd is 0x60 by DJI @20160523
-			{				
-				u8_CmdHead = u8_MdbCmd & 0xF0;			
-				
-				if (u8_CmdHead == 0x60)//convert cmd from address 0x60 to 0x10 adddr head
-				{
-					u8_MdbCmd = (u8_MdbCmd & 0x0F) | 0x10;
-				}
-
-				//if((!u8_MdbAddr_Mode)&&(u8_CmdHead == 0x10))//skip cmd of address 0x10 when AddrMode is #2
-				if (u8_CmdHead == 0x10)
-				{
-					u8_MdbCmd = 0x8F;//Skip the cmd from MDB cashless#1
-				}
+			mdbCmd = Uart0RxBuff.Data[0];
 					
-			}
-			
-		
-			switch(u8_MdbCmd)
+			switch(mdbCmd)
 			{
-			case MDBCMD_CASHLESS_RESET:	// Reset--------------------------------------------------------------------------
-				u8_MdbSlave_State = WS_INACTIVE;
+					case MDBCMD_BILLVALIDATOR_RESET:	//0x30 Reset--------------------------------------------------------------------------
+								u8_MdbSlave_State = WS_INACTIVE;
+							
+								//u8_FlagReset = 1;
+								MdbSlave_Response(ACK);
+								break;
+					
+					case MDBCMD_BILLVALIDATOR_SETUP:			//0x31 Setup--------------------------------------------------------------------------
+								u8_MdbSlave_State = WS_DISABLED;
 
-				//u8_FlagReset = 1;
-				MdbSlave_Response(ACK);
-				break;
-
-			case MDBCMD_CASHLESS_SETUP:	// Setup--------------------------------------------------------------------------
-				u8_MdbSlave_State = WS_DISABLED;
-
-				u8_MdbSub = Uart0RxBuff.Data[1];
-				if (u8_MdbSub == 0x00)// Config Data
-				{
-					MdbSlave_Responses(&pCashlessSetup, sizeof(pCashlessSetup));
-				}
-				else if (u8_MdbSub == 0x01)// Max/Min price
-				{
-					MdbSlave_Response(ACK);
-				}
-				break;
+								MdbSlave_Responses(&bvSetup, sizeof(bvSetup));
+								break;
+					
+					case MDBCMD_BILLVALIDATOR_SECURITY:		//0x32 Set bill validator Security Levels
+								u8_MdbSlave_State = WS_DISABLED;
+					
+								BillValidator_SetSecurityLevels(&Uart0RxBuff.Data[1]);
+								MdbSlave_Response(ACK);
+								break;
+					
+					case MDBCMD_BILLVALIDATOR_POLL:				//0x33
+								MdbSlave_Response(ACK);
+								break;
+					
+					case MDBCMD_BILLVALIDATOR_BILLTYPE:		//0x34 Set bill validator BILL TYPE  && Bill Escrow Enable
+								u8_MdbSlave_State = WS_DISABLED;
+					
+								BillValidator_SetBillType(&Uart0RxBuff.Data[1]);
+								BillValidator_SetBillEscrowEnable(&Uart0RxBuff.Data[3]);
+								MdbSlave_Response(ACK);
+								break;
+					
+					case MDBCMD_BILLVALIDATOR_ESCROW:			//0x35 Set bill validator ESCROW
+								u8_MdbSlave_State = WS_DISABLED;
+					
+								BillValidator_SetEscrowStatus(Uart0RxBuff.Data[1]);
+								MdbSlave_Response(ACK);
+								break;
+					
+					case MDBCMD_BILLVALIDATOR_STACKER:		//0x36 Set bill validator STACKER
+								u8_MdbSlave_State = WS_DISABLED;
+					
+								MdbSlave_Responses(&stackerStatus, sizeof(stackerStatus));
+								break;
+					
+					case MDBCMD_BILLVALIDATOR_EXPANSIONCMD://0x37 Expansion--------------------------------------------------------------------------
+								mdbSubCmd = Uart0RxBuff.Data[1];
+								switch (mdbSubCmd)
+								{
+										case 0x02:	
+												MdbSlave_Responses(&bvExpansion02, sizeof(bvExpansion02));
+												break;
+										default:
+												MdbSlave_Response(ACK);
+												break;
+								}
+								break;
 
 			case MDBCMD_CASHLESS_POLL:	// Poll--------------------------------------------------------------------------
 				if (u8_MdbSlave_State == WS_INACTIVE)	//	
@@ -205,8 +222,8 @@ __task void tsk_MdbSlave(void)
 				break;
 
 			case MDBCMD_CASHLESS_VEND:	// Vend--------------------------------------------------------------------------
-				u8_MdbSub = Uart0RxBuff.Data[1];
-				switch (u8_MdbSub)
+				mdbSubCmd = Uart0RxBuff.Data[1];
+				switch (mdbSubCmd)
 				{
 				case MDBSUB_VEND_REQUEST:
 					u8_MdbSlave_State = WS_VEND_BEGIN;//Wait for mobile payment done							 
@@ -288,8 +305,8 @@ __task void tsk_MdbSlave(void)
 				break;
 
 			case MDBCMD_CASHLESS_READER:	// Reader--------------------------------------------------------------------------
-				u8_MdbSub = Uart0RxBuff.Data[1];
-				switch (u8_MdbSub)
+				mdbSubCmd = Uart0RxBuff.Data[1];
+				switch (mdbSubCmd)
 				{
 				case MDBSUB_READER_DISABLE:
 					u8_MdbSlave_State = WS_DISABLED;
@@ -307,8 +324,8 @@ __task void tsk_MdbSlave(void)
 
 			case MDBCMD_CASHLESS_REVALUE:	// Revalue--------------------------------------------------------------------------
 				u8_MdbSlave_State = WS_REVALUE;
-				u8_MdbSub = Uart0RxBuff.Data[1];
-				switch (u8_MdbSub)
+				mdbSubCmd = Uart0RxBuff.Data[1];
+				switch (mdbSubCmd)
 				{
 				case MDBSUB_REQUEST_ID:
 					MdbSlave_Responses(&p_MyPeripheral, sizeof(p_MyPeripheral));
@@ -320,8 +337,8 @@ __task void tsk_MdbSlave(void)
 				break;
 
 			case MDBCMD_CASHLESS_EXPASION:	// Expansion--------------------------------------------------------------------------
-				u8_MdbSub = Uart0RxBuff.Data[1];
-				switch (u8_MdbSub)
+				mdbSubCmd = Uart0RxBuff.Data[1];
+				switch (mdbSubCmd)
 				{
 				case MDBSUB_REQUEST_ID:
 					MdbSlave_Responses(&p_MyPeripheral, sizeof(p_MyPeripheral));

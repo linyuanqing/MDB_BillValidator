@@ -90,6 +90,7 @@
 #include "LedTask.h"
 #include "MdbSlaveTask.h"
 #include "ComHostTask.h"
+#include "BillValidator.h"
 #endif
 
 /*
@@ -244,9 +245,9 @@ __task void tsk_Led_Com(void)	//
 #if 1
 __task void tsk_System_Initial(void)							//任务1
 {
-	tid_MdbSlave = os_tsk_create(tsk_MdbSlave, 20);	//MDB从机任务
-	tid_ComHost	 = os_tsk_create(tsk_ComHost, 10);	//串口232任务
-	os_tsk_create(tsk_Led, 2);											//LED任务
+	tid_MdbSlave = os_tsk_create(tsk_MdbSlave, 20);	//MDB从机任务	
+	tid_ComHost	 = os_tsk_create(tsk_ComHost, 10);		//串口232任务
+	os_tsk_create(tsk_Led, 2);												//LED任务
 
 	os_tsk_delete_self();
 }
@@ -271,7 +272,7 @@ void Device_Init(void)	//设备硬件初始化
   *****************************************************************************/
 int  main(void)
 {
-	Device_Init();	
+	Device_Init();
 	os_sys_init_prio(tsk_System_Initial, 250);
 }
 /*

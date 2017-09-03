@@ -436,6 +436,11 @@
               <FilePath>..\Source\ComHostTask.c</FilePath>
             </File>
             <File>
+              <FileName>BillValidator.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\BillValidator.c</FilePath>
+            </File>
+            <File>
               <FileName>RTX_Conf_CM.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Source\RTX_Conf_CM.c</FilePath>

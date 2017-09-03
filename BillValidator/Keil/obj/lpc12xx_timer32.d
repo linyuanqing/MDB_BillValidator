@@ -1,10 +1,10 @@
 .\obj\lpc12xx_timer32.o: ..\Source\lpc12xx_timer32.c
 .\obj\lpc12xx_timer32.o: ..\Source\lpc12xx_timer32.h
 .\obj\lpc12xx_timer32.o: ..\Source\LPC12xx.h
-.\obj\lpc12xx_timer32.o: d:\Keil\ARM\CMSIS\Include\core_cm0.h
-.\obj\lpc12xx_timer32.o: d:\Keil\ARM\ARMCC\bin\..\include\stdint.h
-.\obj\lpc12xx_timer32.o: d:\Keil\ARM\CMSIS\Include\core_cmInstr.h
-.\obj\lpc12xx_timer32.o: d:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\obj\lpc12xx_timer32.o: c:\Keil\ARM\CMSIS\Include\core_cm0.h
+.\obj\lpc12xx_timer32.o: c:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\obj\lpc12xx_timer32.o: c:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\obj\lpc12xx_timer32.o: c:\Keil\ARM\CMSIS\Include\core_cmFunc.h
 .\obj\lpc12xx_timer32.o: ..\Source\system_LPC12xx.h
 .\obj\lpc12xx_timer32.o: ..\Source\lpc_types.h
 .\obj\lpc12xx_timer32.o: ..\Source\lpc12xx_libcfg_default.h

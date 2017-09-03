@@ -344,10 +344,10 @@ ARM Macro Assembler    Page 6
               00000000 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M0 --apcs=interwork --depend=.\obj\st
-artup_lpc12xx.d -o.\obj\startup_lpc12xx.o -Id:\Keil\ARM\RV31\INC -Id:\Keil\ARM\
-CMSIS\Include -Id:\Keil\ARM\Inc\NXP\LPC12xx --predefine="__RTX SETA 1" --predef
-ine="__MICROLIB SETA 1" --list=.\lst\startup_lpc12xx.lst ..\Source\startup_LPC1
-2xx.s
+artup_lpc12xx.d -o.\obj\startup_lpc12xx.o -Ic:\Keil\ARM\RV31\INC -Ic:\Keil\ARM\
+CMSIS\Include -Ic:\Keil\ARM\Inc\NXP\LPC12xx --predefine="__RTX SETA 1" --predef
+ine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --list=.\lst\startup_lpc12x
+x.lst ..\Source\startup_LPC12xx.s
 
 
 
@@ -785,4 +785,4 @@ Symbol: __main
       At line 122 in file ..\Source\startup_LPC12xx.s
 Comment: __main used once
 2 symbols
-377 symbols in table
+378 symbols in table

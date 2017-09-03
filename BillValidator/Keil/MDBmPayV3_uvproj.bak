@@ -431,6 +431,11 @@
               <FilePath>..\Source\MdbSlaveTask.c</FilePath>
             </File>
             <File>
+              <FileName>ComHostTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\ComHostTask.c</FilePath>
+            </File>
+            <File>
               <FileName>RTX_Conf_CM.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Source\RTX_Conf_CM.c</FilePath>

@@ -4,6 +4,7 @@
 ".\obj\ledtask.o"
 ".\obj\mdbslavetask.o"
 ".\obj\comhosttask.o"
+".\obj\billvalidator.o"
 ".\obj\rtx_conf_cm.o"
 ".\obj\time.o"
 ".\obj\uart.o"
@@ -14,7 +15,7 @@
 ".\obj\lpc12xx_timer32.o"
 ".\obj\lpc12xx_uart.o"
 ".\obj\system_lpc12xx.o"
-d:\Keil\ARM\RV31\LIB\RTX_CM1.LIB
+c:\Keil\ARM\RV31\LIB\RTX_CM1.LIB
 --library_type=microlib --strict --scatter ".\obj\MDBmPayV3.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
